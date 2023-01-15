@@ -6,80 +6,58 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/12 17:30:53 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/15 14:54:12 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include "./mlx_macos/mlx.h"
+#include "fdf.h"
 
-typedef struct	s_vars {
-	void 	*mlx;
-	void 	*win;
-	
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_vars;
-
-int	close_win(int keycode, t_vars *vars)
+int	main(int argc, char **argv)
 {
-	if (keycode == 53)
-		mlx_destroy_window(vars->mlx, vars->win);
-	exit (0);
-	return (0);
-}
+	int	err;
 
-void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-int draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
-{
-	double pixelX = beginX;
-	double pixelY = beginY;
-	double deltaX = endX - beginX; // 10
-	double deltaY = endY - beginY; // 0
-	int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-	deltaX /= pixels; // 1
-	deltaY /= pixels; // 0
-
-	while (pixels)
+	err = 0;
+	if (argc == 1)
 	{
-  	  mlx_pixel_put(mlx, win, pixelX, pixelY, color);
-  	  pixelX += deltaX;
-  	  pixelY += deltaY;
-  	  --pixels;
+		errno = EINVAL;
+		perror("Rentrez le nom de la map apres ./fdf !");
 	}
-	return (0);
-
+	else if (argc == 2)
+		err = fdf_core(argv[1]);
+	else
+	{
+		errno = E2BIG;
+		perror("Trop d'arguments, choisissez une seule map !");
+	}
+	return (err);
 }
 
-
-
-int	main(void)
+int	fdf_core(char *path)
 {
-	t_vars	vars;
+	t_map		map;
+	t_vars		vars;
+	t_img		img;
 
+	if (!check_extension(path))
+	{
+		errno = EINVAL;
+		perror("Wrong format !");
+		exit(-1);
+	}
+	if (!main_parser(path, &map))
+		exit(-1);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 666, 666, "Fil de Fer");
-	vars.img = mlx_new_image(vars.mlx, 666, 666);
-	vars.addr = mlx_get_data_addr(vars.img, &vars.bits_per_pixel, &vars.line_length,
-								&vars.endian);
-	my_mlx_pixel_put(&vars, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 200, 300);
-	draw_line(vars.mlx, vars.win, 666, 666, 0, 0, 0x00FF0000);	
-	mlx_hook(vars.win, 2, 1L<<0, close_win, &vars);
+	img.win_h = map.win_h;
+	img.win_w = map.win_w;
+	vars.win = mlx_new_window(vars.mlx, img.win_w, img.win_h, "FdF");
+	img.img = mlx_new_image(vars.mlx, img.win_h, img.win_h);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+			&img.endian);
+	transfer_2_screen(&map, &img);
+	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
+	mlx_hook(vars.win, 17, 0, close_win, &vars);
+	mlx_key_hook(vars.win, print_key, &vars);
+	mlx_mouse_hook(vars.win, mouse_hook, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
-
-

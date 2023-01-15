@@ -1,4 +1,10 @@
 SRC = 	main.c \
+	fdf_key_event.c \
+	fdf_bresenham.c \
+	fdf_parse_utils.c \
+	fdf_file2data.c \
+	fdf_mlx.c \
+	fdf_vec.c
 
 CC = gcc
 

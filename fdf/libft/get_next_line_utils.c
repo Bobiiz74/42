@@ -6,30 +6,11 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 18:11:55 by rgodtsch          #+#    #+#             */
-/*   Updated: 2022/12/07 18:12:00 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:04:17 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_calloc(size_t nb_elem, size_t size_elem)
-{
-	void			*ptr;
-	size_t			i;
-	unsigned char	c;
-
-	ptr = malloc(nb_elem * size_elem);
-	if (!ptr)
-		return (NULL);
-	i = 0;
-	c = '\0';
-	while (i < (nb_elem * size_elem))
-	{
-		((char *)ptr)[i] = c;
-		i++;
-	}
-	return (ptr);
-}
 
 int	gnl_strchr(char *str)
 {
@@ -72,16 +53,6 @@ char	*gnl_strjoin(char *line, char *buff)
 	free(line);
 	str[i] = '\0';
 	return (str);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }
 
 char	*ft_strndup(char *buffer, size_t end)

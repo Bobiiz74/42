@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:41:43 by rgodtsch          #+#    #+#             */
-/*   Updated: 2022/11/16 17:14:29 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:04:33 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,8 @@ char				*get_next_line(int fd);
 char				*gnl_read(int fd, char *stash);
 char				*gnl_get_line(char *buffer);
 char				*gnl_rm_old_line(char *buffer);
-void				*ft_calloc(size_t nb_elem, size_t size_elem);
 int					gnl_strchr(char *str);
 char				*gnl_strjoin(char *line, char *buff);
-size_t				ft_strlen(const char *str);
 char				*ft_strndup(char *str, size_t end);
 char				*gnl_remove_free(char *buffer);
 
