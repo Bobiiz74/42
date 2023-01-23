@@ -70,7 +70,6 @@ void	iso_transf(t_vec3 point, t_vec3 *screen, t_map *map)
 	float	trsx;
 	float	trsy;
 	
-	map->zoom = set_zoom(map);
 	trsx = (float)(map->column / 2) * (-1);
 	trsy = (float)(map->line / 2) * (-1);
 	x_transf_iso = (point.x - point.y) * cos(0.523599);

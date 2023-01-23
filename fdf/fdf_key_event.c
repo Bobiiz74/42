@@ -37,17 +37,19 @@ static int	print_key(int keycode, t_vars *vars)
 int	zoom_hook(int keycode, t_map *map, t_vars *vars)
 {
 	(void) vars;
+		printf("%f\n", map->zoom);
 	if (keycode == 126)
 	{
-		printf("%f\n", map.zoom);
+		printf("%f\n", map->zoom);
 		printf("%s\n", "zoom avant");
-		map->zoom++;
+		map->zoom += 1.0;
 		printf("%f\n", map->zoom);
 	}
 	else if (keycode == 125)
 	{
 		printf("%s\n", "zoom arriere");
-		map->zoom -= 1.0;
+		if (map->zoom > 0)
+			map->zoom -= 1.0;
 		printf("%f\n", map->zoom);
 
 	}
@@ -62,12 +64,16 @@ int	key_hook(int keycode, t_map *map, t_vars *vars)
 		close_win(keycode, vars);
 	}
 	if (keycode == 125 || keycode == 126)
+	{
+		printf("key hook%f\n", map->zoom);
 		zoom_hook(keycode, map, vars);
+	}
 	return (0);
 } 
 
 int	render_next_frame(t_map *map)
 {
+	mlx_new_image(map->vars->mlx, map->img->win_w, map->img->win_h); 
 	transfer_2_screen(map, map->img);
 	mlx_put_image_to_window(map->vars->mlx, map->vars->win, map->img->img, 0 , 0);
 	return (0);

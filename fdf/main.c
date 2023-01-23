@@ -46,6 +46,7 @@ int	fdf_core(char *path)
 	}
 	if (!main_parser(path, &map))
 		exit(-1);
+	map.zoom = set_zoom(&map);
 	vars.mlx = mlx_init();
 	img.win_h = map.win_h;
 	img.win_w = map.win_w;
@@ -58,10 +59,9 @@ int	fdf_core(char *path)
 	transfer_2_screen(&map, &img);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	printf("%f\n", map.zoom);
-	mlx_hook(vars.win, 2, 0, key_hook, &vars);
+	mlx_hook(vars.win, 2, 0, key_hook, &map);
 	mlx_loop_hook(vars.mlx, render_next_frame, &map);
 	printf("-%f", map.zoom);
-//	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }
