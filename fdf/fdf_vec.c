@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*   fdf_vec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:45:01 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/10 14:52:33 by rgodtsch         ###   ########.fr       */
+/*   Created: 2023/01/14 15:27:08 by rgodtsch          #+#    #+#             */
+/*   Updated: 2023/01/14 15:28:22 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
+#include "fdf.h"
 
-int	close(int keycode, t_vars *vars)
+void	ft_cp_vec3(t_vec3 point, t_vec3 *new_vec)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	return (0);
+	new_vec->x = point.x;
+	new_vec->y = point.y;
+	new_vec->z = point.z;
 }
 
-int	main(void)
+void	print_vec3(t_vec3 vec)
 {
-	t_vars	vars;
+	ft_printf("(%d,", vec.x);
+	ft_printf("%d,", vec.y);
+	ft_printf("%d)\n", vec.z);
+}
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
-	mlx_loop(vars.mlx);
+int	ft_val_in_r(int v, int min, int max)
+{
+	if (v >= min && v <= max)
+		return (1);
+	else
+		return (0);
 }
