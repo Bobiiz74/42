@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/15 14:54:12 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:02:26 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ int	fdf_core(char *path)
 			&img.endian);
 	transfer_2_screen(&map, &img);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_hook(vars.win, 17, 0, close_win, &vars);
-	mlx_key_hook(vars.win, print_key, &vars);
-	mlx_mouse_hook(vars.win, mouse_hook, &vars);
+	printf("%f", map.zoom);
+	mlx_hook(vars.win, 2, 0, key_hook, &vars);
+	printf("%f", map.zoom);
+//	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_loop(vars.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:23:24 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/14 15:40:35 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:42:27 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,19 @@ void	column_2_img(t_map *map, t_img *data, int x)
 
 void	iso_transf(t_vec3 point, t_vec3 *screen, t_map *map)
 {
-	float	zoom;
+	//float	zoom;
 	float	y_transf_iso;
 	float	x_transf_iso;
 	float	trsx;
 	float	trsy;
-
-	zoom = 1.0 * set_zoom(map);
+	
+	map->zoom = 1.0 * set_zoom(map);
 	trsx = (float)(map->column / 2) * (-1);
 	trsy = (float)(map->line / 2) * (-1);
 	x_transf_iso = (point.x - point.y) * cos(0.523599);
 	y_transf_iso = ((-1) * point.z + (point.x + point.y)) * sin(0.523599);
-	screen->x = map->win_w / 2 + (x_transf_iso + trsx) * zoom;
-	screen->y = map->win_h / 2 + (y_transf_iso + trsy) * zoom;
+	screen->x = map->win_w / 2 + (x_transf_iso + trsx) * map->zoom;
+	screen->y = map->win_h / 2 + (y_transf_iso + trsy) * map->zoom;
 	screen->z = point.z;
 }
 

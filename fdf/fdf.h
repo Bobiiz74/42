@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/14 17:54:54 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:19:13 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_map {
 	int		max_h;
 	int		win_w;
 	int		win_h;
+	float		zoom;
 	t_line	*tab_line;
 }	t_map;
 
@@ -88,9 +89,9 @@ void		ft_cp_vec3(t_vec3 point, t_vec3 *new_vec);
 void		print_vec3(t_vec3 vec);
 int		ft_val_in_r(int v, int min, int max);
 //Keyevent  
-int		close_win(int keycode, t_vars *vars);
-int		print_key(int keycode, t_vars *vars);
-int		mouse_hook(int keycode, t_vec3 *screen);
+//int		close_win(int keycode, t_vars *vars);
+//int		print_key(int keycode, t_vars *vars);
+int		key_hook(int keycode, t_map *map, t_vars *vars);
 
 //fdf_mlx.c
 void	transfer_2_screen(t_map *map, t_img *data);

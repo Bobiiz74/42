@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:31:55 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/15 14:42:19 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:14:49 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,17 @@ int	vec3_in_screen(t_vec3 vec, int max_L, int max_H)
 void	set_window_size(t_map *map)
 {
 	if (map->column >= 0 && map->column < 99)
-		map->win_w = 400;
+		map->win_w = 600;
 	else if (map->column >= 100 && map->column < 500)
 		map->win_w = 800;
 	else
-		map->win_w = 1200;
+		map->win_w = 1100;
 	if (map->line >= 0 && map->line < 99)
-		map->win_h = 400;
-	else if (map->line >= 100 && map->line < 500)
 		map->win_h = 600;
+	else if (map->line >= 100 && map->line < 500)
+		map->win_h = 800;
 	else
-		map->win_h = 1200;
+		map->win_h = 1100;
 }
 
 float	set_zoom(t_map *map)
@@ -107,15 +107,15 @@ float	set_zoom(t_map *map)
 	float	zoom2;
 
 	if (map->column >= 0 && map->column < 99)
-		zoom1 = 10.0;
+		zoom1 = 11.0;
 	else if (map->column >= 100 && map->column < 500)
-		zoom1 = 5.0;
+		zoom1 = 4.0;
 	else
 		zoom1 = 1.0;
 	if (map->line >= 0 && map->line < 99)
-		zoom2 = 10.0;
+		zoom2 = 11.0;
 	else if (map->line >= 100 && map->line < 500)
-		zoom2 = 5.0;
+		zoom2 = 4.0;
 	else
 		zoom2 = 1.0;
 	if (zoom1 > zoom2)
