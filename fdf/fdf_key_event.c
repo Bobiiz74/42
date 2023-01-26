@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/20 18:27:17 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:03:57 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,20 @@ int	key_hook(int keycode, t_map *map, t_vars *vars)
 	}
 	if (keycode == 125 || keycode == 126)
 	{
-		printf("key hook%f\n", map->zoom);
+		printf("key hook%f\n", map->zoom);		
+		mlx_clear_window(map->vars->mlx,  map->vars->win);
 		zoom_hook(keycode, map, vars);
+		transfer_2_screen(map, map->img);
+		mlx_put_image_to_window(map->vars->mlx, map->vars->win, map->img->img, 0 , 0);
 	}
 	return (0);
 } 
 
-int	render_next_frame(t_map *map)
+/*int	render_next_frame(t_map *map)
 {
-	mlx_new_image(map->vars->mlx, map->img->win_w, map->img->win_h); 
+	//mlx_new_image(map->vars->mlx, map->img->win_w, map->img->win_h);
 	transfer_2_screen(map, map->img);
 	mlx_put_image_to_window(map->vars->mlx, map->vars->win, map->img->img, 0 , 0);
 	return (0);
-}
+}*/
 
