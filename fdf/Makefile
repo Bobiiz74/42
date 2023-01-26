@@ -4,6 +4,7 @@ SRC = 	main.c \
 	fdf_parse_utils.c \
 	fdf_file2data.c \
 	fdf_mlx.c \
+	fdf_bonus.c \
 	fdf_vec.c
 
 CC = gcc

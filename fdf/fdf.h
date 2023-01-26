@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/19 16:19:13 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:01:18 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_vars {
 	void		*mlx;
 	void		*win;
 	t_img		*pic;
+	t_img		*img;
 
 }	t_vars;
 
@@ -108,4 +109,6 @@ void	case_dx_dy(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data);
 void	case_dy_dx(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data);
 void	draw_line(t_vec3 p1, t_vec3 p2, t_img *data);
 
+// fdf_bonus.c
+void	print_info(t_vars *vars);
 #endif

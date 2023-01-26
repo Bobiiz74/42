@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/24 17:03:57 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:43:57 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,25 @@ static int	print_key(int keycode, t_vars *vars)
 int	zoom_hook(int keycode, t_map *map, t_vars *vars)
 {
 	(void) vars;
-		printf("%f\n", map->zoom);
 	if (keycode == 126)
-	{
-		printf("%f\n", map->zoom);
-		printf("%s\n", "zoom avant");
 		map->zoom += 1.0;
-		printf("%f\n", map->zoom);
-	}
 	else if (keycode == 125)
-	{
-		printf("%s\n", "zoom arriere");
 		if (map->zoom > 0)
 			map->zoom -= 1.0;
-		printf("%f\n", map->zoom);
+	return (0);
+}
 
-	}
+int	moove_hook(int keycode, t_map *map, t_vars *vars)
+{
+	(void) vars;
+	if (keycode == 13)
+		map->win_h -= 10;
+	if (keycode == 1)
+		map->win_h += 10;
+	if (keycode == 0)
+		map->win_w -= 10;
+	if (keycode == 2)
+		map->win_w += 10;
 	return (0);
 }
 
@@ -65,20 +68,23 @@ int	key_hook(int keycode, t_map *map, t_vars *vars)
 	}
 	if (keycode == 125 || keycode == 126)
 	{
-		printf("key hook%f\n", map->zoom);		
-		mlx_clear_window(map->vars->mlx,  map->vars->win);
 		zoom_hook(keycode, map, vars);
+		mlx_destroy_image(map->vars->mlx, map->img->img);
+		map->img->img = mlx_new_image(map->vars->mlx,
+				map->img->win_w, map->img->win_h);
 		transfer_2_screen(map, map->img);
-		mlx_put_image_to_window(map->vars->mlx, map->vars->win, map->img->img, 0 , 0);
+		mlx_put_image_to_window(map->vars->mlx,
+			map->vars->win, map->img->img, 0, 0);
+	}
+	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
+	{
+		moove_hook(keycode, map, vars);
+		mlx_destroy_image(map->vars->mlx, map->img->img);
+		map->img->img = mlx_new_image(map->vars->mlx,
+				map->img->win_w, map->img->win_h);
+		transfer_2_screen(map, map->img);
+		mlx_put_image_to_window(map->vars->mlx,
+			map->vars->win, map->img->img, 0, 0);
 	}
 	return (0);
-} 
-
-/*int	render_next_frame(t_map *map)
-{
-	//mlx_new_image(map->vars->mlx, map->img->win_w, map->img->win_h);
-	transfer_2_screen(map, map->img);
-	mlx_put_image_to_window(map->vars->mlx, map->vars->win, map->img->img, 0 , 0);
-	return (0);
-}*/
-
+}
