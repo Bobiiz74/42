@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/26 17:24:38 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:04:31 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	fdf_core(char *path)
 	vars.win = mlx_new_window(vars.mlx, img.win_w, img.win_h, "FdF");
 	img.img = mlx_new_image(vars.mlx, img.win_w, img.win_h);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);	
+			&img.endian);
 	map.img = &img;
 	map.vars = &vars;
 	transfer_2_screen(&map, &img);

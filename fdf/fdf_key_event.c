@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/26 17:43:57 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:09:40 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,16 @@ int	key_hook(int keycode, t_map *map, t_vars *vars)
 	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
 	{
 		moove_hook(keycode, map, vars);
+		mlx_destroy_image(map->vars->mlx, map->img->img);
+		map->img->img = mlx_new_image(map->vars->mlx,
+				map->img->win_w, map->img->win_h);
+		transfer_2_screen(map, map->img);
+		mlx_put_image_to_window(map->vars->mlx,
+			map->vars->win, map->img->img, 0, 0);
+	}
+	if (keycode == 15 || keycode == 5 || keycode == 11)
+	{
+		color_hook(keycode, vars);
 		mlx_destroy_image(map->vars->mlx, map->img->img);
 		map->img->img = mlx_new_image(map->vars->mlx,
 				map->img->win_w, map->img->win_h);

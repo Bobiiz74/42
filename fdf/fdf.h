@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/26 17:01:18 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/28 13:55:30 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_img {
 	int		endian;
 	int		win_w;
 	int		win_h;
+	int		color;
 }	t_img;
 
 typedef struct s_vars {
@@ -111,4 +112,5 @@ void	draw_line(t_vec3 p1, t_vec3 p2, t_img *data);
 
 // fdf_bonus.c
 void	print_info(t_vars *vars);
+int		color_hook(int keycode, t_vars *vars);
 #endif

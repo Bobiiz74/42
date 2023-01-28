@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:11 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/14 17:06:19 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/28 13:47:37 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	case_dx_dy(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data)
 		inc.y = -1;
 	while (i <= del.x && vec3_in_screen(p1, data->win_w, data->win_h))
 	{
-		pixel_2img(data, p1.x, p1.y, 0x8B0000);
+		pixel_2img(data, p1.x, p1.y, data->color);
 		i++;
 		p1.x += inc.x;
 		e.x -= d.y;
@@ -64,7 +64,7 @@ void	case_dy_dx(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data)
 		inc.y = -1;
 	while (i <= del.y && vec3_in_screen(p1, data->win_w, data->win_h))
 	{
-		pixel_2img(data, p1.x, p1.y, 0x8B0000);
+		pixel_2img(data, p1.x, p1.y, data->color);
 		i++;
 		p1.y += inc.y;
 		e.y -= d.x;
