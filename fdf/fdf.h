@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/28 13:55:30 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:03:13 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,15 @@ int		new_line_2_tab(char *line, t_map *map);
 int		check_extension(char *path);
 int		check_line(char *str);
 void	free_t_line(t_line *line, int len);
-int	vec3_in_screen(t_vec3 vec, int max_L, int max_H);
 void	set_window_size(t_map *map);
 float	set_zoom(t_map *map);
-char	*ft_free_tab(void **tab, int len);
 
 //vec
 void		ft_cp_vec3(t_vec3 point, t_vec3 *new_vec);
 void		print_vec3(t_vec3 vec);
 int		ft_val_in_r(int v, int min, int max);
+char	*ft_free_tab(void **tab, int len);
+int	vec3_in_screen(t_vec3 vec, int max_L, int max_H);
 //Keyevent  
 //int		close_win(int keycode, t_vars *vars);
 //int		print_key(int keycode, t_vars *vars);
@@ -112,5 +112,6 @@ void	draw_line(t_vec3 p1, t_vec3 p2, t_img *data);
 
 // fdf_bonus.c
 void	print_info(t_vars *vars);
-int		color_hook(int keycode, t_vars *vars);
+int		color_hook(int keycode);
+int	create_trgb(int t, int r, int g, int b);
 #endif

@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:23:24 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/28 13:57:24 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:22:55 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,11 @@ void	column_2_img(t_map *map, t_img *data, int x)
 
 void	iso_transf(t_vec3 point, t_vec3 *screen, t_map *map)
 {
-	//float	zoom;
 	float	y_transf_iso;
 	float	x_transf_iso;
 	float	trsx;
 	float	trsy;
-	
+
 	trsx = (float)(map->column / 2) * (-1);
 	trsy = (float)(map->line / 2) * (-1);
 	x_transf_iso = (point.x - point.y) * cos(0.523599);
@@ -83,10 +82,11 @@ void	pixel_2img(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	color = 0x00FF0000;
+	data->color = color;
 	if ((x > 0 && x <= data->win_w) && (y > 0 && y < data->win_h))
 	{
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+		dst = data->addr + (y * data->line_length + x
+				* (data->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
 	}
 }

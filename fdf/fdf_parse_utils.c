@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:31:55 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/19 15:14:49 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:29:13 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,6 @@ void	free_t_line(t_line *line, int len)
 	free(line);
 }
 
-int	vec3_in_screen(t_vec3 vec, int max_L, int max_H)
-{
-	int	y;
-	int	x;
-
-	x = (int)(vec.x);
-	y = (int)(vec.y);
-	if (((int) vec.x <= 0 || x >= max_L) || ((int) vec.y <= 0 || y >= max_H))
-		return (0);
-	else
-		return (1);
-}
-
 void	set_window_size(t_map *map)
 {
 	if (map->column >= 0 && map->column < 99)
@@ -122,18 +109,4 @@ float	set_zoom(t_map *map)
 		return (zoom2);
 	else
 		return (zoom1);
-}
-
-char	*ft_free_tab(void **tab, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	return (NULL);
 }

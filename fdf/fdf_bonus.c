@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:52:51 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/28 14:05:34 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:14:34 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -17,15 +17,25 @@ void	print_info(t_vars *vars)
 				0xffffff, "Deplacements : W / A / S / D");
 	mlx_string_put(vars->mlx, vars->win, 10, 30, \
 				0xffffff, "Zoom : Fleche en Haut / Fleche en Bas ");
+	mlx_string_put(vars->mlx, vars->win, 10, 55, \
+				0xffffff, "Couleur : R / G / B");
 }
 
-int	color_hook(int keycode, t_vars *vars)
-{
+int	color_hook(int keycode)
+{	
+	int	color;
+
+	color = 0;
 	if (keycode == 15)
-		vars->img->color = 0x00FF0000;
+		color = 0x00FF0000;
 	if (keycode == 5)
-		vars->img->color = 0x0000FF00;
+		color = 0x0000FF00;
 	if (keycode == 11)
-		vars->img->color = 0x000000FF;
-	return (0);
+		color = 0x000000FF;
+	return (color);
+}
+
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
 }

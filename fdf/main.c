@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/28 14:04:31 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/01/30 16:40:28 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	main(int argc, char **argv)
 		errno = E2BIG;
 		perror("Trop d'arguments, choisissez une seule map !");
 	}
+	if (!check_extension(argv[1]))
+	{
+		errno = EINVAL;
+		perror("Wrong format !");
+		exit(-1);
+	}
 	return (err);
 }
 
@@ -38,12 +44,6 @@ int	fdf_core(char *path)
 	t_vars		vars;
 	t_img		img;
 
-	if (!check_extension(path))
-	{
-		errno = EINVAL;
-		perror("Wrong format !");
-		exit(-1);
-	}
 	if (!main_parser(path, &map))
 		exit(-1);
 	map.zoom = set_zoom(&map);
