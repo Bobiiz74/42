@@ -6,11 +6,8 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/02/06 17:06:12 by rgodtsch         ###   ########.fr       */
-=======
+/*   Updated: 2023/02/06 18:02:09 by rgodtsch         ###   ########.fr       */
 /*   Updated: 2023/02/04 15:14:53 by rgodtsch         ###   ########.fr       */
->>>>>>> 7dbaf72d18d961799bb466ee7e244ffa61e6f078
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +21,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 	{
 		errno = EINVAL;
-		perror("Rentrez le nom de la map apres ./fdf !");
+		perror("Rentrez le nom de la map apres ./fdf");
 	}
 	else if (argc == 2)
 		err = fdf_core(argv[1]);

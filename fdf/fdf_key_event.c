@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/06 17:12:53 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:42:48 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	moove_hook(int keycode, t_map *map, t_vars *vars)
 {
 	(void) vars;
 	if (keycode == 13)
-		map->win_h -= 10;
-	if (keycode == 1)
 		map->win_h += 10;
+	if (keycode == 1)
+		map->win_h -= 10;
 	if (keycode == 0)
-		map->win_w -= 10;
-	if (keycode == 2)
 		map->win_w += 10;
+	if (keycode == 2)
+		map->win_w -= 10;
 	return (0);
 }
 
