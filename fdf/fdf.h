@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/30 17:03:13 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:48:23 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		ft_val_in_r(int v, int min, int max);
 char	*ft_free_tab(void **tab, int len);
 int	vec3_in_screen(t_vec3 vec, int max_L, int max_H);
 //Keyevent  
-//int		close_win(int keycode, t_vars *vars);
+int		close_win(int keycode, t_vars *vars);
 //int		print_key(int keycode, t_vars *vars);
 int		key_hook(int keycode, t_map *map, t_vars *vars);
 int		render_next_frame(t_map *map);

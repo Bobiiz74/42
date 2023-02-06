@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:34:55 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/14 15:35:17 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:11:11 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	new_line_2_tab(char *line, t_map *map)
 	i = 0;
 	while (tab[i])
 		i++;
-	if (i != map->column)
+	if (i < map->column)
 	{
 		ft_free_tab((void **)tab, i);
 		errno = EINVAL;

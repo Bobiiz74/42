@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/30 16:40:28 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:06:12 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		errno = E2BIG;
-		perror("Trop d'arguments, choisissez une seule map !");
+		perror("Trop d'arguments !");
 	}
 	if (!check_extension(argv[1]))
 	{
@@ -48,6 +48,7 @@ int	fdf_core(char *path)
 		exit(-1);
 	map.zoom = set_zoom(&map);
 	vars.mlx = mlx_init();
+	img.color = 0x696969;
 	img.win_h = map.win_h;
 	img.win_w = map.win_w;
 	vars.win = mlx_new_window(vars.mlx, img.win_w, img.win_h, "FdF");
@@ -60,6 +61,7 @@ int	fdf_core(char *path)
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	print_info(&vars);
 	mlx_hook(vars.win, 2, 0, key_hook, &map);
+	mlx_hook(vars.win, 17, 0, close_win, &map);
 	mlx_loop(vars.mlx);
 	return (0);
 }

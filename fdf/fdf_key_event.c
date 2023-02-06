@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/30 17:17:45 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:12:53 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	close_win(int keycode, t_vars *vars)
 {
-	if (keycode != 53)
+	if (keycode == 53)
 		mlx_destroy_window(vars->mlx, vars->win);
 	exit (0);
 	return (0);
 }
 
-static int	print_key(int keycode, t_vars *vars)
+/*static int	print_key(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
 		close_win(keycode, vars);
 	return (0);
-}
+}*/
 
 int	zoom_hook(int keycode, t_map *map, t_vars *vars)
 {
@@ -56,8 +56,8 @@ int	key_hook(int keycode, t_map *map, t_vars *vars)
 {
 	if (keycode == 53)
 	{
-		print_key(keycode, vars);
-		close_win(keycode, vars);
+		//print_key(keycode, vars);
+		close_win(keycode, map->vars);
 	}
 	if (keycode == 125 || keycode == 126)
 		zoom_hook(keycode, map, vars);
