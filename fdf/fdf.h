@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/06 15:48:23 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:27:44 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void	draw_line(t_vec3 p1, t_vec3 p2, t_img *data);
 // fdf_bonus.c
 void	print_info(t_vars *vars);
 int		color_hook(int keycode);
-int	create_trgb(int t, int r, int g, int b);
+int		create_trgb(int t, int r, int g, int b);
 #endif
