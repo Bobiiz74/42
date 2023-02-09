@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:18:48 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/06 18:02:09 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/02/08 10:49:41 by rgodtsch         ###   ########.fr       */
 /*   Updated: 2023/02/04 15:14:53 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	{
 		errno = EINVAL;
 		perror("Rentrez le nom de la map apres ./fdf");
+		return (-1);
 	}
 	else if (argc == 2)
 		err = fdf_core(argv[1]);
