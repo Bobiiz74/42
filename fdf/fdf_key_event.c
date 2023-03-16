@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/09 17:28:16 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/03/09 14:00:58 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ int	moove_hook(int keycode, t_map *map, t_vars *vars)
 int	key_hook(int keycode, t_map *map, t_vars *vars)
 {
 	if (keycode == 53)
-	{
-		//print_key(keycode, vars);
 		close_win(keycode, map->vars);
-	}
 	if (keycode == 125 || keycode == 126)
 		zoom_hook(keycode, map, vars);
 	if (keycode == 13 || keycode == 0 || keycode == 1 || keycode == 2)
