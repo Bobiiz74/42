@@ -6,11 +6,14 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:53:53 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/04/06 17:17:47 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:10:04 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+//Parcours chaque bit du char c, si le bit == 1 SIGUSR1 est renvoyé à ft_write,
+//sinon SIGUSR2.
 
 void	ft_send(int pid, char c)
 {

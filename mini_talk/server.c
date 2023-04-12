@@ -6,11 +6,15 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:21:51 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/04/06 15:43:33 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:08:03 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+//Fct appellée a chaque signal, si 8bit dans i -> 1char, 
+//si SIGUSR1 -> modifie valeur de i (1 bit vers la gauche) pour réassembler 
+//les char
 
 void	ft_write(int sig)
 {
