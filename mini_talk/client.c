@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:53:53 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/04/10 14:10:04 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:24:49 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_send(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(150);
+		usleep(200);
 		bit++;
 	}
 }
@@ -36,7 +36,7 @@ int main(int ac, char **av)
 	int pid;
 	int i;
 	
-	if (ac == 1)
+	if (ac <= 2)
 	{
 		ft_putstr("Error\n");
 		return (1);
