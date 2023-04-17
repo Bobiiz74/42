@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:53:53 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/04/14 14:24:49 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/17 13:12:13 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@ void	ft_send(int pid, char c)
 	}
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	int pid;
-	int i;
-	
-	if (ac <= 2)
-	{
-		ft_putstr("Error\n");
-		return (1);
-	}
-	pid = mini_atoi(av[1]);	
+	int	pid;
+	int	i;
+
 	i = 0;
+	if (ac == 1)
+		ft_putstr_error("Usage : ./client PID string\n");
+	if (ac == 2)
+		ft_putstr_error("Not enough arguments\n");
+	pid = mini_atoi(av[1]);
 	if (ac == 3)
 	{
 		while (av[2][i] != '\0')
@@ -53,9 +52,6 @@ int main(int ac, char **av)
 		ft_send(pid, '\n');
 	}
 	else
-	{
-		ft_putstr("Error\n");
-		return (1);
-	}
-	return(0);
+		ft_putstr_error("Error\n");
+	return (0);
 }

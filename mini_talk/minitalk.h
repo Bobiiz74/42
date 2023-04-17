@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:01:35 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/04/06 15:44:40 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/17 13:18:38 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
+void	ft_putstr_error(char *str);
 void	ft_putnbr(int nbr);
 int		mini_atoi(char *str);
 void	ft_write(int sig);
