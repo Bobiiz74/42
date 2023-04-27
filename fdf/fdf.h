@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 13:54:22 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/09 17:27:44 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:06:15 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <errno.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "./mlx_macos//mlx.h"
+# include "./mlx_macos/mlx.h"
 # include "./libft/libft.h"
 
 typedef struct s_img {
@@ -87,11 +87,11 @@ void	set_window_size(t_map *map);
 float	set_zoom(t_map *map);
 
 //vec
-void		ft_cp_vec3(t_vec3 point, t_vec3 *new_vec);
-void		print_vec3(t_vec3 vec);
+void	ft_cp_vec3(t_vec3 point, t_vec3 *new_vec);
+void	print_vec3(t_vec3 vec);
 int		ft_val_in_r(int v, int min, int max);
 char	*ft_free_tab(void **tab, int len);
-int	vec3_in_screen(t_vec3 vec, int max_L, int max_H);
+int		vec3_in_screen(t_vec3 vec, int max_L, int max_H);
 //Keyevent  
 int		close_win(int keycode, t_vars *vars);
 //int		print_key(int keycode, t_vars *vars);

@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 13:41:43 by rgodtsch          #+#    #+#             */
-/*   Updated: 2022/11/16 17:14:29 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:03:40 by rgodtsch         ###   ########.fr       */
 /*   Updated: 2023/01/14 16:04:33 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,8 +39,8 @@ void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_lstiter(t_list *lst, void (*f)(void *));
-void				ft_lstadd_front(t_list **alst, t_list *new);
-void				ft_lstadd_back(t_list **alst, t_list *new);
+void				ft_lstadd_front(t_list **alst, t_list *new_list);
+void				ft_lstadd_back(t_list **alst, t_list *new_list);
 void				ft_lstdelone(t_list *lst, void (*del)(void*));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_putchar_fd(char c, int fd);

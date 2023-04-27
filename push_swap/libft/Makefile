@@ -5,6 +5,7 @@ SRCS	= ft_atoi.c \
 		  ft_isalpha.c \
 		  ft_isascii.c \
 		  ft_isdigit.c \
+		  ft_is_sign.c \
 		  ft_isprint.c \
 		  ft_itoa.c \
 		  ft_strlen.c \
