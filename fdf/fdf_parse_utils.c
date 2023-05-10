@@ -6,11 +6,13 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:31:55 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/30 16:29:13 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:37:49 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+//vérifie si le fichier en parametre à l'extension ".fdf"
 
 int	check_extension(char *path)
 {

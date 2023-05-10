@@ -6,11 +6,12 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:42:23 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/21 16:09:47 by ppotier          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:38:33 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	ft_free(char **str)
 {
 	int	i;
@@ -26,28 +27,25 @@ void	ft_free(char **str)
 	free(str);
 }
 
-int	ft_check_int(char *strnum)
+int	ft_check_int(char *num)
 {
 	int	res;
 	int	len;
 
-	len = ft_strlen(strnum) - 1;
-	// res = 0;
-	if (len > 11)
+	len = ft_strlen(num);
+	if (len > 11 || (len > 10 && num[0] != '-'))
 		return (0);
-	if (len > 10 && strnum[0] != '-')
-		return (0);
-	else if (strnum[0] == '-' && len == 11)
+	else if (num[0] == '-' && len == 11)
 	{
-		res = ft_strncmp(strnum, "-2147483648", 12);
+		res = ft_strncmp(num, "-2147483648", 12);
 		if (res > 0)
 			return (0);
 		else
 			return (1);
 	}
-	else if (strnum[0] != '-' && len == 10)
+	else if (num[0] != '-' && len == 10)
 	{
-		res = ft_strncmp(strnum, "2147483647", 11);
+		res = ft_strncmp(num, "2147483647", 11);
 		if (res > 0)
 			return (0);
 		else

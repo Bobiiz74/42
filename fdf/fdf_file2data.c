@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:34:55 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/09 17:04:24 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:37:47 by rgodtsch         ###   ########.fr       */
 /*   Updated: 2023/02/04 15:46:02 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -32,6 +32,9 @@ int	main_parser(char *path, t_map *map)
 	set_window_size(map);
 	return (1);
 }
+
+//Parse ligne par ligne, stock les données de la carte avec getfirstinfo, 
+//chaque ligne lue -> newline2tab et line++;
 
 int	map_parser(int fd, t_map *map)
 {
@@ -59,6 +62,9 @@ int	map_parser(int fd, t_map *map)
 	return (1);
 }
 
+//t_map contient nbr column, nbr line, hauteur max et 
+//un tableau contenant tvec3 
+
 void	get_first_info_parser(char *line, t_map *map)
 {
 	char	**tab;
@@ -76,6 +82,8 @@ void	get_first_info_parser(char *line, t_map *map)
 	ft_free_tab((void **)tab, i);
 	free(line);
 }
+
+//stock position x / y et z sa hauteur.
 
 t_line	*get_next_pts_line(t_map *map, char **tab)
 {
@@ -105,6 +113,10 @@ t_line	*get_next_pts_line(t_map *map, char **tab)
 	new_tab[map->line].tab_pts = dt_pts;
 	return (new_tab);
 }
+
+//vérifie si chaque char est printable ou \n,
+//stock les pts de la line dans un tableau, 
+//vérifie si il y a autant de pts dans la line que les precédentes
 
 int	new_line_2_tab(char *line, t_map *map)
 {

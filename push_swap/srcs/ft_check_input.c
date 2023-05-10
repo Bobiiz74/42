@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:30:40 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/21 16:13:12 by ppotier          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:38:49 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	check_doubles(char **av)
 		while (av[j])
 		{
 			if (j != i && nb_cmp(av[i], av[j]) == 0)
-				return (1);
+				return (0);
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	args_is_digit(char *str)
@@ -102,10 +102,11 @@ int	ft_check_input(int ac, char **av)
 	else
 		args = ++av;
 	tmp = args;
-	if (check_doubles(args))
+	if (!check_doubles(args))
 	{
 		if (ac == 2)
 			ft_free(args);
+		ft_putstr_fd("Error\n", 2);
 		return (0);
 	}
 	while (*args)
@@ -115,14 +116,18 @@ int	ft_check_input(int ac, char **av)
 			args = tmp;
 			if (ac == 2)
 				ft_free(args);
+			ft_putstr_fd("Error\n", 2);
 			return (0);
 		}
 		nb_zeros += args_is_zero(*args);
 		args++;
-	}
+	}	
 	args = tmp;
 	if (nb_zeros > 1)
+	{
+		ft_putstr_fd("Error\n", 2);
 		return (0);
+	}
 	if (ac == 2)
 		ft_free(args);
 	return (1);

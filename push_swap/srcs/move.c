@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:06:13 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/11 10:50:35 by ppotier          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:23:09 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	do_rev_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a < 0 && *cost_b < 0)
 	{
-		cost_a++;
-		cost_b++;
+		(*cost_a)++;
+		(*cost_b)++;
 		do_rrr(a, b);
 	}
 }
@@ -33,8 +33,8 @@ void	rotate_both(t_stack **a, t_stack **b, int *cost_a, int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
 	{
-		cost_a--;
-		cost_b--;
+		(*cost_a)--;
+		(*cost_b)--;
 		do_rr(a, b);
 	}
 }

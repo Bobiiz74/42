@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:15:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/03/09 14:00:58 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:31:44 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,6 @@ int	close_win(int keycode, t_vars *vars)
 	exit (0);
 	return (0);
 }
-
-/*static int	print_key(int keycode, t_vars *vars)
-{
-	if (keycode == 53)
-		close_win(keycode, vars);
-	return (0);
-}*/
 
 int	zoom_hook(int keycode, t_map *map, t_vars *vars)
 {

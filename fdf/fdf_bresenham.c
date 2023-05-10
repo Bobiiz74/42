@@ -6,11 +6,16 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:11 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/30 15:41:27 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:18:31 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+//initialise les variables pour dx_dy/dy_dx
+//inc = 1; veut dire qu'on incremente les pixels de 1
+//d permet de calculer le decalage horizontal et vertical de chaque pixel
+//en fonction de la distance entre les deux pts.
 
 void	set_var(t_vec2 *e, t_vec2 *del, t_vec2 *d, t_vec2 *inc)
 {
@@ -21,6 +26,18 @@ void	set_var(t_vec2 *e, t_vec2 *del, t_vec2 *d, t_vec2 *inc)
 	inc->x = 1;
 	inc->y = 1;
 }
+
+//algo de bresenham(dans quel sens tracer la ligne)
+//vérifie si coordonnée x du point p1 est supérieure à  p2. Si oui, configure
+//la variable d'incrémentation de x à -1, sinon elle la laisse à 1.
+//Même vérification pour y . 
+//Entre dans une boucle qui dessine la ligne pixel par pixel. 
+//À chaque itération,  trace un pixel à la position actuelle, incrémente 
+//coordonnée x de p1 en fonction de la variable d'incrémentation de x, 
+//met à jour la variable e.x en soustrayant la coordonnée y de d.y, 
+//et si e.x est devenu négative, elle incrémente la coordonnée y de p1 
+//en fonction de la variable d'incrémentation de y et met à jour la 
+//variable e.x en ajoutant la coordonnée x de d.x.
 
 void	case_dx_dy(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data)
 {
@@ -49,6 +66,8 @@ void	case_dx_dy(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data)
 	}
 }
 
+//cas inverse
+
 void	case_dy_dx(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data)
 {
 	int		i;
@@ -75,6 +94,11 @@ void	case_dy_dx(t_vec2 e, t_vec3 p1, t_vec3 p2, t_img *data)
 		}
 	}
 }
+
+//recoit 2 pts a relier
+//calcule la distance en x et y entre les deux pts et décide si la ligne 
+//doit etre déssinée horizontalement(x plus grand -> dx-dy) 
+//ou verticalement(y plus grand -> dy-dx)
 
 void	draw_line(t_vec3 p1, t_vec3 p2, t_img *data)
 {

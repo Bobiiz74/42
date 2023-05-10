@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:15:21 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/20 23:32:54 by ppotier          ###   ########.fr       */
+/*   Updated: 2023/04/28 18:39:09 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int		get_stack_size(t_stack *stack);
 void	stack_add(t_stack **stack, t_stack *new);
 t_stack	*ft_stack_new(int value);
 t_stack	*get_stack_bottom(t_stack *stack);
+//args.c
+char	**ft_split_args(char **str, char c);
 // error.c
 int		ft_check_int(char *strnum);
 void	ft_free(char **str);

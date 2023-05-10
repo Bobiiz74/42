@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:27:08 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/01/30 16:31:32 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:23:49 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	ft_cp_vec3(t_vec3 point, t_vec3 *new_vec)
 	new_vec->z = point.z;
 }
 
-void	print_vec3(t_vec3 vec)
+/*void	print_vec3(t_vec3 vec)
 {
+	ft_printf("salut");
 	ft_printf("(%d,", vec.x);
 	ft_printf("%d,", vec.y);
 	ft_printf("%d)\n", vec.z);
@@ -28,11 +29,12 @@ void	print_vec3(t_vec3 vec)
 
 int	ft_val_in_r(int v, int min, int max)
 {
+	ft_printf("salut2\n");
 	if (v >= min && v <= max)
 		return (1);
 	else
 		return (0);
-}
+}*/
 
 int	vec3_in_screen(t_vec3 vec, int max_L, int max_H)
 {

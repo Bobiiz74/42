@@ -6,11 +6,13 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:23:24 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/02/09 16:55:56 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:37:35 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+//dessine ligne par ligne puis column par column
 
 void	transfer_2_screen(t_map *map, t_img *data)
 {
@@ -29,6 +31,9 @@ void	transfer_2_screen(t_map *map, t_img *data)
 		x++;
 	}
 }
+
+//dessine la line x en transformant les coordonées des pts 
+//dela ligne en points à l'ecran et dessine avec draw line
 
 void	line_2_img(t_map *map, t_img *data, int x)
 {
@@ -62,6 +67,12 @@ void	column_2_img(t_map *map, t_img *data, int x)
 	}
 }
 
+//calcul une translation de l'origine du repere pour centrer l'img
+//projete le point 3D sur un plan 2D(translation)
+//trasnf iso : cos et sin = angle de 30°
+//screen->x et y: calcule la position sur l'écran
+//(centre de la fenetre, position et zoom)
+
 void	iso_transf(t_vec3 point, t_vec3 *screen, t_map *map)
 {
 	float	y_transf_iso;
@@ -77,6 +88,9 @@ void	iso_transf(t_vec3 point, t_vec3 *screen, t_map *map)
 	screen->y = map->win_h / 2 + (y_transf_iso + trsy) * map->zoom;
 	screen->z = point.z;
 }
+
+//vérifie si le pixel (x/y) est bien a l'interieur des dimensions de l'img
+//calcul l'addrs mémoire du pixel pour savoir ou il se situe sur l'img
 
 void	pixel_2img(t_img *data, int x, int y, int color)
 {

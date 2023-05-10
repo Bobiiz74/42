@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:13:53 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/07 14:10:39 by ppotier          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:20:35 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	do_rr(t_stack **a, t_stack **b)
 {
 	rotate(a);
 	rotate(b);
-	ft_printf("rrr\n");
+	ft_printf("rr\n");
 }
