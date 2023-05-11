@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:30:40 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/28 18:38:49 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/11 12:56:08 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_doubles(char **av)
 	i = 1;
 	while (av[i])
 	{
-		j = 1;
+		j = 0;
 		while (av[j])
 		{
 			if (j != i && nb_cmp(av[i], av[j]) == 0)
