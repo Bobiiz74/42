@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:30:40 by ppotier           #+#    #+#             */
-/*   Updated: 2023/05/11 12:56:08 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:00:08 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,47 +87,27 @@ int	args_is_zero(char *str)
 
 int	ft_check_input(int ac, char **av)
 {
-	int		nb_zeros;
 	char	**args;
 	char	**tmp;
+	int		nb_zeros;
 
 	nb_zeros = 0;
 	args = NULL;
 	if (ac == 2)
-	{
-		args = ft_split(av[1], ' ');
-		if (!*args)
-			return (0);
-	}
+		args = ft_split_args(av[1]);
 	else
 		args = ++av;
 	tmp = args;
-	if (!check_doubles(args))
-	{
-		if (ac == 2)
-			ft_free(args);
-		ft_putstr_fd("Error\n", 2);
+	if (!is_valid_args(args, ac))
 		return (0);
-	}
 	while (*args)
 	{
-		if (!ft_check_int(*args) || (!args_is_digit(*args)))
-		{
-			args = tmp;
-			if (ac == 2)
-				ft_free(args);
-			ft_putstr_fd("Error\n", 2);
-			return (0);
-		}
 		nb_zeros += args_is_zero(*args);
 		args++;
-	}	
+	}
 	args = tmp;
 	if (nb_zeros > 1)
-	{
-		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
+		return (ft_putendl_fd("Error", 2), 0);
 	if (ac == 2)
 		ft_free(args);
 	return (1);

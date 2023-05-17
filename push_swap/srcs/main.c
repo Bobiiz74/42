@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:18:08 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/28 18:04:15 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:03:35 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_stack	*fill_value(int ac, char **av)
 	nb = 0;
 	a = NULL;
 	if (ac == 2)
-		args = ft_split_args(av, ' ');
+		args = ft_split_args(av[1]);
 	else
 		args = ++av;
 	tmp = args;

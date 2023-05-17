@@ -6,7 +6,7 @@
 /*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:14:57 by ppotier           #+#    #+#             */
-/*   Updated: 2023/04/11 10:51:22 by ppotier          ###   ########.fr       */
+/*   Updated: 2023/05/17 16:11:58 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	get_position(t_stack **stack)
 * Choisit la meilleure position cible dans la pile A pour l'indice donné de
 * un élément dans la pile B. Vérifie d'abord si l'indice de l'élément B peut
 * être placé quelque part entre les éléments de la pile A, en vérifiant si
-* il y a un élément dans la pile A avec un index plus grand. Sinon, il trouve le
+* il y a un élément dans la pile A avec un index plus grand. Sinon, il trouve l'
 * élément avec le plus petit index dans A et l'affecte comme position cible.
 *	--- Exemple:
 * target_pos commence à INT_MAX
