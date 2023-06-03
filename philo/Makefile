@@ -1,6 +1,7 @@
 SRC =	srcs/main.c \
-		srcs/init_thread.c \
+		srcs/routine.c \
 		srcs/init_struct.c \
+		srcs/usleep.c \
 	
 CC = gcc
 
