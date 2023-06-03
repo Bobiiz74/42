@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/03 14:23:24 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:48:21 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int main(int argc, char **argv);
 void	*routine_philo(void *arg);
 void	activity(t_info *info, t_philo philo);
 void	write_status(char *str, t_philo philo, t_info *info);
+void	sleep_think(t_philo *philo, t_info *info);
 
 //init_struct.c
 //int		*init_struct(int ac, char **av);

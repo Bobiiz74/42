@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/03 15:16:38 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:40:29 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,24 @@ void	*routine_philo(void *arg)
 	t_philo	*philo;
 	t_info	*info;
 
-	int i;
-	//int id;
+	//int i;
+	int id;
 	philo = (t_philo *) arg;
 	info = philo->info;
 	
-	//id = philo->id;
+	id = philo->id;
 	//printf("routine philo id : %d\n", id);
-	i = 1;
-	(void) info;
-	/*if(philo->id % 2 == 0)
-		ft_usleep(info->time_to_eat / 10);*/
-	printf("1left%p\n", philo[i].left_fork);
-	while(i <= info->number_of_philosophers)
-	{
-		printf("left%p\n", philo[i].left_fork);
-		//activity(info, philo[i]);
-		i++;
-	}
-	//printf("Philosophe %d is thinking\n", id);
-	//ft_usleep(info->time_to_die);
-	//printf("Philosophe %d died\n", id);
+	//i = 1;
+	
+	if(philo->id % 2 == 0)
+		ft_usleep(info->time_to_eat / 10);
+	//printf("1left%p\n", philo[id].left_fork);
+	//while(i <= info->number_of_philosophers)
+	//{
+		//printf("left%p\n", philo[i].left_fork);
+	activity(info, philo[id]);
+	//	i++;
+//	}	
 	return (NULL);
 }
 
@@ -48,7 +45,7 @@ void	activity(t_info *info, t_philo philo)
 	//printf("%p\n", philo.left_fork);
 	if(philo.left_fork->taken == 1)
 	{
-		printf("coucou2\n");
+		//printf("coucou2\n");
 		pthread_mutex_lock(&philo.left_fork->mutex);
 		write_status("has taken a fork\n", philo, info);
 		philo.left_fork->taken = 0;
@@ -72,8 +69,8 @@ void	activity(t_info *info, t_philo philo)
 		philo.left_fork->taken = 0;
 		philo.right_fork->taken = 0;
 	}
-
-	//sleep_think(ph);
+	printf("jai fini activity\n");
+	//sleep_think(&philo, info);
 }
 
 void	write_status(char *str, t_philo philo, t_info *info)
@@ -87,4 +84,11 @@ void	write_status(char *str, t_philo philo, t_info *info)
 		printf("%ld ", time);
 		printf("Philo %d %s", philo.id, str);
 	}
+}
+
+void	sleep_think(t_philo *philo, t_info *info)
+{
+	write_status("is sleeping\n", *philo, info);
+	ft_usleep(info->time_to_sleep);
+	write_status("is thinking\n", *philo, info);
 }

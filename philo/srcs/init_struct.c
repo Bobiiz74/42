@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/03 14:40:37 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:23:04 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ t_philo	*init_struct_philo(t_info *info)
 	i = 0;
 	while (i < nb_philo)
 	{
-		philo[i].id = i + 1;
-		//printf("id%d\n", philo[i].id);
-		philo[i].info = info;
 		if (pthread_create(&thread_id[i], NULL, &routine_philo, &philo[i]) != 0)
 			return (NULL);
 		philo[i].left_fork = &info->forks[i];
 		philo[i].right_fork = &info->forks[(i + 1) % info->number_of_philosophers];
+		philo[i].id = i + 1;
+		//printf("id%d\n", philo[i].id);
+		philo[i].info = info;
 		//printf("left%p\n", philo[i].left_fork);
 		//printf("right%p\n", philo[i].right_fork);
 		i++;
@@ -84,9 +84,9 @@ t_fork	*init_struct_fork(t_info *info)
 		return (NULL);
 	while (i < info->number_of_fork)
 	{
-		fork[i].taken = 1;
 		if (pthread_mutex_init(&fork[i].mutex, NULL) != 0)
 			return (NULL);
+		fork[i].taken = 1;
 		i++;
 	
 	}
