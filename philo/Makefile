@@ -5,7 +5,7 @@ SRC =	srcs/main.c \
 	
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -g -fsanitize=thread 
 
 NAME = philo
 

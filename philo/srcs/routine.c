@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/03 17:40:29 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/05 12:57:41 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,28 @@ void	*routine_philo(void *arg)
 	t_philo	*philo;
 	t_info	*info;
 
-	//int i;
+	//(void)info;
+	int i;
 	int id;
 	philo = (t_philo *) arg;
 	info = philo->info;
 	
 	id = philo->id;
-	//printf("routine philo id : %d\n", id);
-	//i = 1;
+	i = 0;
 	
-	if(philo->id % 2 == 0)
-		ft_usleep(info->time_to_eat / 10);
-	//printf("1left%p\n", philo[id].left_fork);
-	//while(i <= info->number_of_philosophers)
-	//{
-		//printf("left%p\n", philo[i].left_fork);
-	activity(info, philo[id]);
-	//	i++;
-//	}	
+	if(id % 2 == 0)
+		ft_usleep(info->time_to_eat + 1000);
+	printf("routine philo id : %d\n", id);
+	printf("left%p\n", philo[id - 1].left_fork);	
+	printf("right%p\n", philo[id - 1].right_fork);
+	while(info->must_eat == -1)
+		activity(info, philo[id - 1]);
+
+	while(i < info->must_eat)
+	{
+		activity(info, philo[id - 1]);
+		i++;
+	}
 	return (NULL);
 }
 
@@ -46,20 +50,23 @@ void	activity(t_info *info, t_philo philo)
 	if(philo.left_fork->taken == 1)
 	{
 		//printf("coucou2\n");
+		philo.left_fork->taken = 0;
 		pthread_mutex_lock(&philo.left_fork->mutex);
 		write_status("has taken a fork\n", philo, info);
-		philo.left_fork->taken = 0;
 	}
-	else
-		ft_usleep(2000);
 	if(philo.right_fork->taken == 1)
 	{
+		philo.right_fork->taken = 0;
 		pthread_mutex_lock(&philo.right_fork->mutex);
 		write_status("has taken a fork\n", philo, info);
-		philo.right_fork->taken = 0;
 	}
 	else
-		ft_usleep(2000);
+	{
+		pthread_mutex_unlock(&philo.left_fork->mutex);
+		philo.left_fork->taken = 0;
+		activity(info, philo);
+
+	}
 	if(philo.left_fork->taken == 0 && philo.right_fork->taken == 0)
 	{
 		write_status("is eating\n", philo, info);
@@ -68,9 +75,12 @@ void	activity(t_info *info, t_philo philo)
 		pthread_mutex_unlock(&philo.right_fork->mutex);
 		philo.left_fork->taken = 0;
 		philo.right_fork->taken = 0;
+
 	}
-	printf("jai fini activity\n");
-	//sleep_think(&philo, info);
+	
+
+	write_status("jai fini de graille\n", philo, info);
+	sleep_think(&philo, info);
 }
 
 void	write_status(char *str, t_philo philo, t_info *info)
