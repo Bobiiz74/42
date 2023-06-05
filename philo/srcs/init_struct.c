@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/05 13:09:41 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:44:44 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ t_philo	*init_struct_philo(t_info *info)
 	i = 0;
 	while (i < nb_philo)
 	{
+		philo[i].id = i + 1;
+		philo[i].info = info;
 		philo[i].left_fork = &info->forks[i];
 		philo[i].right_fork = &info->forks[(i + 1) % info->number_of_philosophers];
 		//printf("left%p\n", philo[i].left_fork);
 		//printf("right%p\n", philo[i].right_fork);
-
-		philo[i].id = i + 1;
-		philo[i].info = info;
+	
 		if (pthread_create(&thread_id[i], NULL, &routine_philo, &philo[i]) != 0)
 			return (NULL);
 		i++;
@@ -55,6 +55,7 @@ t_philo	*init_struct_philo(t_info *info)
 t_info  *init_struct_info(int ac, char **av)
 {
     t_info  *info;
+	//pthread_mutex_t write_mut;
 
     (void)ac;
     info = malloc(sizeof(t_info));
@@ -67,8 +68,13 @@ t_info  *init_struct_info(int ac, char **av)
     info->time_to_eat = ft_atoi(av[3]);
     info->time_to_sleep = ft_atoi(av[4]);
     info->must_eat = -1;
+	if(info->number_of_philosophers == 1)
+		one_philo(info->time_to_die);
     if (av[5])
         info->must_eat = ft_atoi(av[5]);
+	if(pthread_mutex_init(&info->write_mut, NULL) != 0)
+			return (NULL);
+
     return (info);
 }
 
@@ -84,10 +90,9 @@ t_fork	*init_struct_fork(t_info *info)
 		return (NULL);
 	while (i < info->number_of_fork)
 	{
-		//fork[i].taken = 1;
-		if (pthread_mutex_init(&fork[i].mutex, NULL) != 0)
-			return (NULL);	
 		fork[i].taken = 1;
+		if (pthread_mutex_init(&fork[i].mutex, NULL) != 0)
+			return (NULL);		
 		i++;
 	
 	}

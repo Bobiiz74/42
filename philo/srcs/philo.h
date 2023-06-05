@@ -6,14 +6,13 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/05 13:11:09 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:54:48 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "../libft/libft.h"
 # include <pthread.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -40,6 +39,7 @@ typedef struct s_philo
 
 typedef struct s_info
 {
+	pthread_mutex_t write_mut;
 	long int		start_t;
 	int				number_of_philosophers;
 	int				number_of_fork;
@@ -59,9 +59,10 @@ int main(int argc, char **argv);
 
 //routine.c
 void	*routine_philo(void *arg);
-void	activity(t_info *info, t_philo philo);
-void	write_status(char *str, t_philo philo, t_info *info);
+void	activity(t_info *info, t_philo *philo);
+void	write_status(char *str, t_philo *philo, t_info *info);
 void	sleep_think(t_philo *philo, t_info *info);
+void	one_philo(int time_to_die);
 
 //init_struct.c
 //int		*init_struct(int ac, char **av);
@@ -72,5 +73,10 @@ t_info	*init_struct_info(int ac, char **av);
 //usleep.c
 void	ft_usleep(long int time_in_ms);
 long int	actual_time(void);
+
+//utils.c
+int		ft_atoi(const char *str);
+void	ft_putstr_fd(char *s, int fd);
+int		ft_strlen(char *str);
 
 #endif
