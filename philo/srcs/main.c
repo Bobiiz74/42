@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:27:05 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/05 16:42:38 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:44:25 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	main(int argc, char **argv)
 		info = init_struct_info(argc, argv);
 		info->forks = init_struct_fork(info);
 		info->philos = init_struct_philo(info);
-		
 		if (!info->philos || !info || !info->forks)
 		{
 			ft_putstr_fd("Error: Memory allocation failed\n", 2);

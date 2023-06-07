@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/05 16:54:48 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:53:17 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stddef.h>
 # include <sys/time.h>
 
-
 typedef struct s_fork
 {	
 	pthread_mutex_t	mutex;
@@ -30,8 +29,9 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	pthread_t	thread_id;
-	int		id;
+	pthread_t		thread_id;
+	int				id;
+	int				eat_count;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	struct s_info	*info;
@@ -39,7 +39,7 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-	pthread_mutex_t write_mut;
+	pthread_mutex_t	write_mut;
 	long int		start_t;
 	int				number_of_philosophers;
 	int				number_of_fork;
@@ -51,11 +51,8 @@ typedef struct s_info
 	t_philo			*philos;
 }t_info;
 
-
-
 // main.c
-int main(int argc, char **argv);
-
+int		main(int argc, char **argv);
 
 //routine.c
 void	*routine_philo(void *arg);
@@ -71,7 +68,7 @@ t_fork	*init_struct_fork(t_info *info);
 t_info	*init_struct_info(int ac, char **av);
 
 //usleep.c
-void	ft_usleep(long int time_in_ms);
+void		ft_usleep(long int time_in_ms);
 long int	actual_time(void);
 
 //utils.c
