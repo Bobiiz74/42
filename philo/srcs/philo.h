@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/07 16:53:17 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:06:57 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	int				id;
 	int				eat_count;
+	long int		last_meal;
 	t_fork			*left_fork;
 	t_fork			*right_fork;
 	struct s_info	*info;
@@ -53,6 +54,7 @@ typedef struct s_info
 
 // main.c
 int		main(int argc, char **argv);
+void	check_all_eat(t_info *info);
 
 //routine.c
 void	*routine_philo(void *arg);
@@ -75,5 +77,9 @@ long int	actual_time(void);
 int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_strlen(char *str);
+
+//check.c
+int		check_death(t_info *info, t_philo *philo);
+void	is_dead(t_info *info, t_philo *philo);
 
 #endif

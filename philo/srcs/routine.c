@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/07 16:48:13 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:20:26 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ void	*routine_philo(void *arg)
 	id = philo->id;
 	i = 0;
 	if (id % 2 == 0)
-		ft_usleep(info->time_to_eat + 1);
-	while (info->must_eat == -1)
+		ft_usleep(info->time_to_eat);
+	while (info->must_eat == -1 /*&& check_death(info, philo) != 1*/)
+	{
+		is_dead(info, philo);
 		activity(info, philo);
-	while (philo[i].eat_count != info->must_eat)
+	}
+	while (philo[i].eat_count != info->must_eat /*&& check_death(info, philo) != 1*/)
+	{
+		is_dead(info, philo);
 		activity(info, philo);
+	}
 	return (NULL);
 }
 
@@ -38,28 +44,23 @@ void	activity(t_info *info, t_philo *philo)
 	{
 		philo->left_fork->taken = 0;
 		pthread_mutex_lock(&philo->left_fork->mutex);
-		pthread_mutex_lock(&info->write_mut);
 		write_status("has taken a fork\n", philo, info);
-		pthread_mutex_unlock(&info->write_mut);
 		philo->right_fork->taken = 0;
 		pthread_mutex_lock(&philo->right_fork->mutex);
-		pthread_mutex_lock(&info->write_mut);
 		write_status("has taken a fork\n", philo, info);
-		pthread_mutex_unlock(&info->write_mut);
-		pthread_mutex_lock(&info->write_mut);
 		write_status("is eating\n", philo, info);
 		philo->eat_count += 1;
-		pthread_mutex_unlock(&info->write_mut);
-		ft_usleep(info->time_to_eat);
+		philo->last_meal = actual_time();
 		pthread_mutex_unlock(&philo->left_fork->mutex);
 		pthread_mutex_unlock(&philo->right_fork->mutex);
 		philo->left_fork->taken = 1;
 		philo->right_fork->taken = 1;
+		ft_usleep(info->time_to_eat);
 		sleep_think(philo, info);
 	}
 	else
 	{
-		ft_usleep(info->time_to_eat);
+		is_dead(info, philo);
 		activity(info, philo);
 	}
 }
@@ -72,27 +73,25 @@ void	write_status(char *str, t_philo *philo, t_info *info)
 	time = actual_time() - info->start_t;
 	if (time >= 0 && time <= 2147483647)
 	{
+		pthread_mutex_lock(&info->write_mut);
 		printf("%ld ", time);
 		printf("Philo %d %s", philo->id, str);
+		pthread_mutex_unlock(&info->write_mut);
 	}
 }
 
 void	sleep_think(t_philo *philo, t_info *info)
 {
-	pthread_mutex_lock(&info->write_mut);
 	write_status("is sleeping\n", philo, info);
-	pthread_mutex_unlock(&info->write_mut);
 	ft_usleep(info->time_to_sleep);
-	pthread_mutex_lock(&info->write_mut);
 	write_status("is thinking\n", philo, info);
-	pthread_mutex_unlock(&info->write_mut);
 }
 
 void	one_philo(int time_to_die)
 {
 	printf("0 Philo 1 has taken a fork\n");
 	ft_usleep(time_to_die);
-	printf("%d Philo 1 died because he is to dumb to eat with only one \
-			fork :)\n", time_to_die);
+	printf("%d Philo 1 died because he is\
+to dumb to eat with only one fork :)\n", time_to_die);
 	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/07 16:57:05 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:13:20 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_philo	*init_struct_philo(t_info *info)
 		philo[i].right_fork = &info->forks[(i + 1) % \
 			info->number_of_philosophers];
 		philo[i].eat_count = 0;
+		//philo[i].last_meal = actual_time;
 		if (pthread_create(&philo[i].thread_id, NULL, &routine_philo, \
 					&philo[i]) != 0)
 			return (NULL);

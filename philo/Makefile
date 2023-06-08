@@ -3,6 +3,7 @@ SRC =	srcs/main.c \
 		srcs/init_struct.c \
 		srcs/usleep.c \
 		srcs/utils.c \
+		srcs/check.c \
 	
 CC = gcc
 
