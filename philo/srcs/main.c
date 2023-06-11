@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:27:05 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/11 18:21:36 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:52:51 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_info	*info;	
-	
+	t_info	*info;
+
 	if ((argc == 5 || argc == 6) && numeric(argv, 0, 1))
 	{
 		info = init_struct_info(argc, argv);
 		info->forks = init_struct_fork(info);
-		info->philos = init_struct_philo(info);	
+		info->philos = init_struct_philo(info);
 		if (argc == 6)
 			check_all_eat(info);
 		if (!info->philos || !info || !info->forks)
@@ -52,6 +52,7 @@ void	check_all_eat(t_info *info)
 	}
 	exit (1);
 }
+
 void	free_all(t_info *info)
 {
 	if (info->philos)
@@ -83,14 +84,13 @@ int	numeric(char **argv, int i, int j)
 		while (argv[j][i])
 		{
 			if (argv[j][i] < '0' || argv[j][i] > '9' || ft_strlen(argv[j]) > 10)
-				return (0);	
-			if(ft_atoi(argv[j]) <= 0)
+				return (0);
+			if (ft_atoi(argv[j]) <= 0)
 				return (0);
 			i++;
 		}
 		i = 0;
 		j++;
 	}
-
 	return (1);
 }

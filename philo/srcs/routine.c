@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/11 18:24:24 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:53:54 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,14 @@ void	*routine_philo(void *arg)
 		ft_usleep(info->time_to_eat / 10, info, philo);
 	while (info->must_eat == -1)
 	{
-
-		if(info->stop == 1)
+		if (info->stop == 1)
 			activity(info, philo);
 		else
 			break ;
 	}
 	while (philo[i].eat_count != info->must_eat)
 	{	
-		if(info->stop == 0)
+		if (info->stop == 0)
 			break ;
 		else
 			activity(info, philo);
@@ -45,7 +44,8 @@ void	*routine_philo(void *arg)
 
 void	activity(t_info *info, t_philo *philo)
 {
-	if (philo->left_fork->taken == 1 && philo->right_fork->taken == 1 && info->stop == 1)
+	if (philo->left_fork->taken == 1 && philo->right_fork->taken == 1 \
+			&& info->stop == 1)
 	{
 		pthread_mutex_lock(&philo->left_fork->mutex);
 		philo->left_fork->taken = 0;
@@ -56,7 +56,7 @@ void	activity(t_info *info, t_philo *philo)
 		write_status("is eating\n", philo, info);
 		philo->eat_count += 1;
 		philo->last_meal = actual_time();
-		ft_usleep(info->time_to_eat, info, philo);	
+		ft_usleep(info->time_to_eat, info, philo);
 		philo->left_fork->taken = 1;
 		philo->right_fork->taken = 1;
 		pthread_mutex_unlock(&philo->left_fork->mutex);
@@ -70,7 +70,7 @@ void	write_status(char *str, t_philo *philo, t_info *info)
 	long int		time;
 
 	time = -1;
-	time = actual_time() - info->start_t;	
+	time = actual_time() - info->start_t;
 	if (time >= 0 && time <= 2147483647 && info->stop == 1)
 	{
 		pthread_mutex_lock(&info->write_mut);
@@ -82,7 +82,7 @@ void	write_status(char *str, t_philo *philo, t_info *info)
 
 void	sleep_think(t_philo *philo, t_info *info)
 {
-	if(info->stop == 1)
+	if (info->stop == 1)
 	{
 		write_status("is sleeping\n", philo, info);
 		is_dead(info, philo);

@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/11 18:22:45 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:54:19 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_fork	*init_struct_fork(t_info *info);
 t_info	*init_struct_info(int ac, char **av);
 
 //usleep.c
-void		ft_usleep(long int time_in_ms, t_info *info, t_philo *philo);
+void	ft_usleep(long int time_in_ms, t_info *info, t_philo *philo);
 long int	actual_time(void);
 
 //utils.c
