@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/08 15:13:20 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:22:57 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_philo	*init_struct_philo(t_info *info)
 		philo[i].right_fork = &info->forks[(i + 1) % \
 			info->number_of_philosophers];
 		philo[i].eat_count = 0;
-		//philo[i].last_meal = actual_time;
+		philo[i].last_meal = actual_time();
 		if (pthread_create(&philo[i].thread_id, NULL, &routine_philo, \
 					&philo[i]) != 0)
 			return (NULL);
@@ -62,11 +62,14 @@ t_info	*init_struct_info(int ac, char **av)
 	info->time_to_eat = ft_atoi(av[3]);
 	info->time_to_sleep = ft_atoi(av[4]);
 	info->must_eat = -1;
-	if (info->number_of_philosophers == 1)
+	info->stop = 1;
+	if(info->number_of_philosophers == 1)
 		one_philo(info->time_to_die);
 	if (av[5])
 		info->must_eat = ft_atoi(av[5]);
 	if (pthread_mutex_init(&info->write_mut, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(&info->dead, NULL) != 0)
 		return (NULL);
 	return (info);
 }

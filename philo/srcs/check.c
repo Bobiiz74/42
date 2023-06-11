@@ -6,23 +6,22 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:31:16 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/08 15:03:58 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/11 18:17:29 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_death(t_info *info, t_philo *philo)
-{
-	(void)info;
-	(void) philo;
-	return (1);
-}
-
 void is_dead(t_info *info, t_philo *philo)
-{
-	if(info->start_t - philo->last_meal >= info->time_to_die)
+{	
+	if(actual_time() - philo->last_meal >= (long)info->time_to_die)
 	{
-		write_status("died\n", philo, info);
+		pthread_mutex_lock(&info->dead);
+		info->stop = 0;
+		pthread_mutex_unlock(&info->dead);
+		pthread_mutex_lock(&info->write_mut);
+		printf("%ld ", ((long)info->time_to_die + 1));
+		printf("Philo %d died\n", philo->id);	
+		exit (1);
 	}
 }
