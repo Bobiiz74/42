@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:27:05 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/12 12:44:57 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:14:18 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int	main(int argc, char **argv)
 			ft_putstr_fd("Error: Memory allocation failed\n", 2);
 			return (1);
 		}
-		printf("SUUUU\n");
-		//if(!(info->stop == 0))
 		ft_exit(info);
 	}
 	else
@@ -52,13 +50,10 @@ void	check_all_eat(t_info *info)
 			printf("Each philosopher ate %d time(s)\n", info->must_eat);
 		i++;
 	}
-	exit (1);
 }
 
 void	free_all(t_info *info)
 {
-	
-	printf("yofree\n");
 	if (info->philos)
 		free(info->philos);
 	if (info->forks)
@@ -74,16 +69,11 @@ void	ft_exit(t_info *info)
 	i = 0;
 	while (i < info->number_of_fork)
 	{
-		printf("yo\n");
 		pthread_mutex_destroy(&info->forks[i].mutex);
 		i++;
 	}
-	printf("yoi2\n");
-
 	pthread_mutex_destroy(&info->write_mut);
 	pthread_mutex_destroy(&info->dead);
-
-	printf("yoi3\n");
 	free_all(info);
 }
 

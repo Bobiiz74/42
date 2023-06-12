@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/11 18:54:19 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:58:42 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_info
 {	
 	pthread_mutex_t	write_mut;
 	pthread_mutex_t	dead;
+	pthread_mutex_t	time;
 	int				stop;
 	long int		start_t;
 	int				number_of_philosophers;
@@ -56,34 +57,35 @@ typedef struct s_info
 }t_info;
 
 // main.c
-int		main(int argc, char **argv);
-void	check_all_eat(t_info *info);
-void	free_all(t_info *info);
-void	ft_exit(t_info *info);
-int		numeric(char **argv, int i, int j);
+int			main(int argc, char **argv);
+void		check_all_eat(t_info *info);
+void		free_all(t_info *info);
+void		ft_exit(t_info *info);
+int			numeric(char **argv, int i, int j);
 
 //routine.c
-void	*routine_philo(void *arg);
-void	activity(t_info *info, t_philo *philo);
-void	write_status(char *str, t_philo *philo, t_info *info);
-void	sleep_think(t_philo *philo, t_info *info);
-void	one_philo(int time_to_die);
+void		*routine_philo(void *arg);
+void		activity(t_info *info, t_philo *philo);
+void		write_status(char *str, t_philo *philo, t_info *info);
+void		sleep_think(t_philo *philo, t_info *info);
+void		one_philo(int time_to_die);
 
 //init_struct.c
-t_philo	*init_struct_philo(t_info *info);
-t_fork	*init_struct_fork(t_info *info);
-t_info	*init_struct_info(int ac, char **av);
+t_philo		*init_struct_philo(t_info *info);
+t_fork		*init_struct_fork(t_info *info);
+t_info		*init_struct_info(int ac, char **av);
+void		init_philo(t_info *info, t_philo *philo);
 
 //usleep.c
-void	ft_usleep(long int time_in_ms, t_info *info, t_philo *philo);
+void		ft_usleep(long int time_in_ms, t_info *info, t_philo *philo);
 long int	actual_time(void);
 
 //utils.c
-int		ft_atoi(const char *str);
-void	ft_putstr_fd(char *s, int fd);
-int		ft_strlen(char *str);
+int			ft_atoi(const char *str);
+void		ft_putstr_fd(char *s, int fd);
+int			ft_strlen(char *str);
 
 //check.c
-void	is_dead(t_info *info, t_philo *philo);
+void		is_dead(t_info *info, t_philo *philo);
 
 #endif

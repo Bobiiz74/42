@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/12 12:31:57 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:19:35 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,10 @@ t_philo	*init_struct_philo(t_info *info)
 	philo = malloc(sizeof(t_philo) * nb_philo);
 	if (!philo)
 		return (NULL);
+	init_philo(info, philo);
 	i = 0;
 	while (i < nb_philo)
-	{
-		philo[i].id = i + 1;
-		philo[i].info = info;
-		philo[i].left_fork = &info->forks[i];
-		philo[i].right_fork = &info->forks[(i + 1) % \
-			info->number_of_philosophers];
-		philo[i].eat_count = 0;
-		philo[i].last_meal = actual_time();
+	{	
 		if (pthread_create(&philo[i].thread_id, NULL, &routine_philo, \
 					&philo[i]) != 0)
 			return (NULL);
@@ -71,6 +65,8 @@ t_info	*init_struct_info(int ac, char **av)
 		return (NULL);
 	if (pthread_mutex_init(&info->dead, NULL) != 0)
 		return (NULL);
+	if (pthread_mutex_init(&info->time, NULL) != 0)
+		return (NULL);
 	return (info);
 }
 
@@ -91,4 +87,22 @@ t_fork	*init_struct_fork(t_info *info)
 		i++;
 	}
 	return (fork);
+}
+
+void	init_philo(t_info *info, t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->number_of_philosophers)
+	{
+		philo[i].id = i + 1;
+		philo[i].info = info;
+		philo[i].left_fork = &info->forks[i];
+		philo[i].right_fork = &info->forks[(i + 1) % \
+			info->number_of_philosophers];
+		philo[i].eat_count = 0;
+		philo[i].last_meal = actual_time();
+		i++;
+	}
 }

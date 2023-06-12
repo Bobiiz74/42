@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/12 12:49:48 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:13:48 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,20 @@ void	*routine_philo(void *arg)
 {
 	t_philo	*philo;
 	t_info	*info;
-	int		i;
-	int		id;
 
 	philo = (t_philo *) arg;
 	info = philo->info;
-	id = philo->id;
-	i = 0;
-	if (id % 2 == 0)
+	if (philo->id % 2 == 0)
 		ft_usleep(info->time_to_eat / 10, info, philo);
 	while (info->must_eat == -1 && info->stop == 1)
 	{
-		if (info->stop == 1)
-			activity(info, philo);
-		else
-			break ;
+		is_dead(info, philo);
+		activity(info, philo);
 	}
-	while (philo[i].eat_count != info->must_eat && info->stop == 1)
-	{	
-		if (info->stop == 0)
-			break ;
-		else
-			activity(info, philo);
+	while (philo->eat_count != info->must_eat && info->stop == 1)
+	{		
+		is_dead(info, philo);
+		activity(info, philo);
 	}	
 	return (NULL);
 }
@@ -55,7 +47,9 @@ void	activity(t_info *info, t_philo *philo)
 		write_status("has taken a fork\n", philo, info);
 		write_status("is eating\n", philo, info);
 		philo->eat_count += 1;
+		pthread_mutex_lock(&info->time);
 		philo->last_meal = actual_time();
+		pthread_mutex_unlock(&info->time);
 		ft_usleep(info->time_to_eat, info, philo);
 		philo->left_fork->taken = 1;
 		philo->right_fork->taken = 1;
