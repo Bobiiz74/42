@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/11 18:53:54 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:49:48 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ void	*routine_philo(void *arg)
 	i = 0;
 	if (id % 2 == 0)
 		ft_usleep(info->time_to_eat / 10, info, philo);
-	while (info->must_eat == -1)
+	while (info->must_eat == -1 && info->stop == 1)
 	{
 		if (info->stop == 1)
 			activity(info, philo);
 		else
 			break ;
 	}
-	while (philo[i].eat_count != info->must_eat)
+	while (philo[i].eat_count != info->must_eat && info->stop == 1)
 	{	
 		if (info->stop == 0)
 			break ;
 		else
 			activity(info, philo);
-	}
+	}	
 	return (NULL);
 }
 
@@ -85,9 +85,7 @@ void	sleep_think(t_philo *philo, t_info *info)
 	if (info->stop == 1)
 	{
 		write_status("is sleeping\n", philo, info);
-		is_dead(info, philo);
 		ft_usleep(info->time_to_sleep, info, philo);
-		is_dead(info, philo);
 		write_status("is thinking\n", philo, info);
 	}
 }
