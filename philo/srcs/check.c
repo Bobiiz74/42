@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 14:31:16 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/12 17:56:07 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:18:54 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	is_dead(t_info *info, t_philo *philo)
 {		
-	if (actual_time() - philo->last_meal >= (long)info->time_to_die)
+	if (actual_time() - philo->last_meal > (long)info->time_to_die)
 	{
 		pthread_mutex_lock(&info->dead);
 		info->stop = 0;
