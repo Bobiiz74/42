@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:01:03 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/11 18:14:24 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:01:03 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_usleep(long int time_in_ms, t_info *info, t_philo *philo)
 	start_time = actual_time();
 	while ((actual_time() - start_time) < time_in_ms && info->stop == 1)
 	{
-		is_dead(info, philo);
 		usleep(time_in_ms / 10);
+		is_dead(info, philo);
 	}
 }
 

@@ -7,7 +7,7 @@ SRC =	srcs/main.c \
 	
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread -g3
 
 NAME = philo
 
@@ -22,7 +22,7 @@ RM = rm -f
 
 # Compile tout, sous le nom philo
 ${NAME}:	${OBJ}
-			${CC}	${OBJ} -o ${NAME}
+			${CC}	${CFLAGS}	${OBJ} -o ${NAME}
 
 clean:
 		$(RM) $(OBJ) $(NAME)
