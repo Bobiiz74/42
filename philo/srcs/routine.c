@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/26 18:00:58 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/28 23:40:04 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,29 @@ void	*routine_philo(void *arg)
 	info = philo->info;
 	if (philo->id % 2 == 0)
 		ft_usleep(info->time_to_eat / 10, info, philo);
-	while (info->must_eat == -1 && info->stop == 1)
+	while (info->must_eat == -1)
 	{
-		is_dead(info, philo);
+		/*if(is_dead(info, philo) == -1)
+			break ;*/
 		activity(info, philo);
 	}
-	while (philo->eat_count != info->must_eat && info->stop == 1)
+	while (philo->eat_count != info->must_eat)
 	{		
-		is_dead(info, philo);
 		activity(info, philo);
+		/*if(is_dead(info, philo) == -1)
+			break ;*/
+		//activity(info, philo);
 	}	
 	return (NULL);
 }
 
 void	activity(t_info *info, t_philo *philo)
 {
-	if (philo->left_fork->taken == 1 && philo->right_fork->taken == 1 \
-			&& info->stop == 1)
+	if (is_dead(info, philo) == 1)
 	{
 		pthread_mutex_lock(&philo->left_fork->mutex);
 		pthread_mutex_lock(&philo->right_fork->mutex);
-	//	philo->left_fork->taken = 0;
 		write_status("has taken a fork\n", philo, info);
-	//	philo->right_fork->taken = 0;
 		write_status("has taken a fork\n", philo, info);
 		write_status("is eating\n", philo, info);
 		philo->eat_count += 1;
@@ -51,8 +51,6 @@ void	activity(t_info *info, t_philo *philo)
 		philo->last_meal = actual_time();
 		pthread_mutex_unlock(&info->time);
 		ft_usleep(info->time_to_eat, info, philo);
-//		philo->left_fork->taken = 1;
-	//	philo->right_fork->taken = 1;
 		pthread_mutex_unlock(&philo->left_fork->mutex);
 		pthread_mutex_unlock(&philo->right_fork->mutex);
 		sleep_think(philo, info);
@@ -65,7 +63,7 @@ void	write_status(char *str, t_philo *philo, t_info *info)
 
 	time = -1;
 	time = actual_time() - info->start_t;
-	if (time >= 0 && time <= 2147483647 && info->stop == 1)
+	if (time >= 0 && time <= 2147483647  && is_dead(info, philo) == 1)
 	{
 		pthread_mutex_lock(&info->write_mut);
 		printf("%ld ", time);
@@ -76,11 +74,14 @@ void	write_status(char *str, t_philo *philo, t_info *info)
 
 void	sleep_think(t_philo *philo, t_info *info)
 {
-	if (info->stop == 1)
+
+	if (is_dead(info, philo) == 1)
 	{
+		pthread_mutex_lock(&info->dead);
 		write_status("is sleeping\n", philo, info);
 		ft_usleep(info->time_to_sleep, info, philo);
 		write_status("is thinking\n", philo, info);
+		pthread_mutex_unlock(&info->write_mut);
 	}
 }
 

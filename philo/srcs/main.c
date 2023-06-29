@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:27:05 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/26 17:23:35 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:09:32 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	main(int argc, char **argv)
 	if ((argc == 5 || argc == 6) && numeric(argv, 0, 1))
 	{
 		info = init_struct_info(argc, argv);
+		if(info->number_of_philosophers == 1)
+		{
+			one_philo(info->time_to_die);
+			return (free(info), 0);
+		}
 		info->forks = init_struct_fork(info);
 		info->philos = init_struct_philo(info);
 		if (argc == 6)

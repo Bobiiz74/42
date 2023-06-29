@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/12 17:58:42 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/28 22:49:46 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ void		ft_putstr_fd(char *s, int fd);
 int			ft_strlen(char *str);
 
 //check.c
-void		is_dead(t_info *info, t_philo *philo);
+int			is_dead(t_info *info, t_philo *philo);
 
 #endif

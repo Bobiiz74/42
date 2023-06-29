@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/12 18:19:35 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:01:17 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ t_info	*init_struct_info(int ac, char **av)
 	info->time_to_sleep = ft_atoi(av[4]);
 	info->must_eat = -1;
 	info->stop = 1;
-	if (info->number_of_philosophers == 1)
-		one_philo(info->time_to_die);
 	if (av[5])
 		info->must_eat = ft_atoi(av[5]);
 	if (pthread_mutex_init(&info->write_mut, NULL) != 0)
