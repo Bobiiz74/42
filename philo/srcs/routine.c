@@ -6,7 +6,7 @@
 /*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 16:45:41 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/28 23:40:04 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:00:11 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,28 @@ void	*routine_philo(void *arg)
 	info = philo->info;
 	if (philo->id % 2 == 0)
 		ft_usleep(info->time_to_eat / 10, info, philo);
-	while (info->must_eat == -1)
+	/*while (info->must_eat == -1)
 	{
-		/*if(is_dead(info, philo) == -1)
-			break ;*/
+		if(is_dead(info, philo) == -1)
+			break ;
 		activity(info, philo);
-	}
+	}*/
 	while (philo->eat_count != info->must_eat)
 	{		
-		activity(info, philo);
-		/*if(is_dead(info, philo) == -1)
-			break ;*/
-		//activity(info, philo);
+		if(is_dead(info, philo) == 1)
+			activity(info, philo);
+		else
+		{
+			printf("salut\n");
+			break;
+		}
 	}	
 	return (NULL);
 }
 
 void	activity(t_info *info, t_philo *philo)
 {
-	if (is_dead(info, philo) == 1)
+//	if (is_dead(info, philo) == 1)
 	{
 		pthread_mutex_lock(&philo->left_fork->mutex);
 		pthread_mutex_lock(&philo->right_fork->mutex);
@@ -75,7 +78,7 @@ void	write_status(char *str, t_philo *philo, t_info *info)
 void	sleep_think(t_philo *philo, t_info *info)
 {
 
-	if (is_dead(info, philo) == 1)
+	//if (is_dead(info, philo) == 1)
 	{
 		pthread_mutex_lock(&info->dead);
 		write_status("is sleeping\n", philo, info);
