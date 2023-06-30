@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   usleep.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:01:03 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/30 15:57:17 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:04:12 by ppotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 void	ft_usleep(long int time_in_ms, t_info *info, t_philo *philo)
 {
 	long int	start_time;
-	(void)info;
-	(void)philo;
+
 	start_time = 0;
 	start_time = actual_time();
-	while ((actual_time() - start_time) < time_in_ms/* && is_dead(info, philo) == 1*/)
-	{
-		usleep(time_in_ms / 10);
-	}
+	is_dead(info, philo);
+	while ((actual_time() - start_time) < time_in_ms)
+		usleep(time_in_ms / 5);
 }
 
 long int	actual_time(void)

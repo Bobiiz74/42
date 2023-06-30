@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:11:45 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/28 22:49:46 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:47:05 by ppotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void		check_all_eat(t_info *info);
 void		free_all(t_info *info);
 void		ft_exit(t_info *info);
 int			numeric(char **argv, int i, int j);
+void		ft_join(t_info *info);
 
 //routine.c
 void		*routine_philo(void *arg);

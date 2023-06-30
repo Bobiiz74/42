@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:27:05 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/28 17:09:32 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:01:41 by ppotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_join(t_info *info)
+{		
+	int i = 0;
+	while (i < info->number_of_philosophers)
+	{
+		if (pthread_join(info->philos[i].thread_id, NULL) != 0)
+			return ;
+		i++;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -19,7 +30,7 @@ int	main(int argc, char **argv)
 	if ((argc == 5 || argc == 6) && numeric(argv, 0, 1))
 	{
 		info = init_struct_info(argc, argv);
-		if(info->number_of_philosophers == 1)
+		if (info->number_of_philosophers == 1)
 		{
 			one_philo(info->time_to_die);
 			return (free(info), 0);
@@ -33,7 +44,9 @@ int	main(int argc, char **argv)
 			ft_putstr_fd("Error: Memory allocation failed\n", 2);
 			return (1);
 		}
+		ft_join(info);
 		ft_exit(info);
+		free_all(info);
 	}
 	else
 		ft_putstr_fd("Error: Invalid arguments\n", 2);
@@ -79,7 +92,6 @@ void	ft_exit(t_info *info)
 	}
 	pthread_mutex_destroy(&info->write_mut);
 	pthread_mutex_destroy(&info->dead);
-	free_all(info);
 }
 
 int	numeric(char **argv, int i, int j)

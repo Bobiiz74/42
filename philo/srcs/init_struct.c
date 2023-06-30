@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgodtsch <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: ppotier <ppotier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 17:24:25 by rgodtsch          #+#    #+#             */
-/*   Updated: 2023/06/28 17:01:17 by rgodtsch         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:45:00 by ppotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ t_philo	*init_struct_philo(t_info *info)
 	{	
 		if (pthread_create(&philo[i].thread_id, NULL, &routine_philo, \
 					&philo[i]) != 0)
-			return (NULL);
-		i++;
-	}
-	i = 0;
-	while (i < info->number_of_philosophers)
-	{
-		if (pthread_join(philo[i].thread_id, NULL) != 0)
 			return (NULL);
 		i++;
 	}
