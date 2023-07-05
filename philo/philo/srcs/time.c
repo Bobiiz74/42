@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktomat <ktomat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: robin <robin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 12:18:49 by ktomat            #+#    #+#             */
-/*   Updated: 2023/06/09 14:14:52 by ktomat           ###   ########.fr       */
+/*   Created: 2023/06/09 12:18:49 by robin             #+#    #+#             */
+/*   Updated: 2023/07/05 14:12:03 by robin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned long long	get_actual_time(void)
 	return (time);
 }
 
-void	ms_sleep(unsigned long long milliseconde)
+void	ft_usleep(unsigned long long milliseconde)
 {
 	unsigned long long	start_time;
 	unsigned long long	timer_ms;

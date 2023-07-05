@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktomat <ktomat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: robin <robin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/09 12:12:35 by ktomat            #+#    #+#             */
-/*   Updated: 2023/06/14 10:45:05 by ktomat           ###   ########.fr       */
+/*   Created: 2023/07/05 14:09:19 by robin             #+#    #+#             */
+/*   Updated: 2023/07/05 14:53:09 by robin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,15 @@ int	check_args(int ac, char **av)
 	return (1);
 }
 
-void	supervisor(t_table *table)
+void	supervisor(t_info *info)
 {
-	(void)table;
 	while (1)
 	{
-		if (death_checker(table) == -1)
+		if (check_death(info) == -1)
 		{
 			return ;
 		}
-		else if (meal_checker(table) == -1)
+		else if (check_meal(info) == -1)
 		{
 			return ;
 		}

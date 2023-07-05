@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ktomat <ktomat@student.42.fr>              +#+  +:+       +#+        */
+/*   By: robin <robin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/27 12:56:44 by ktomat            #+#    #+#             */
-/*   Updated: 2023/06/13 11:22:09 by ktomat           ###   ########.fr       */
+/*   Created: 2023/06/27 12:56:44 by robin             #+#    #+#             */
+/*   Updated: 2023/07/05 14:20:50 by robin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define MIN_INT -2147483648
 
 typedef struct s_philo	t_philo;
-typedef struct s_table	t_table;
+typedef struct s_info	t_info;
 
 typedef struct s_times
 {
@@ -43,47 +43,47 @@ typedef struct s_philo
 	unsigned long long		time_last_meal;
 	pthread_mutex_t			fork;
 	pthread_mutex_t			*next_fork;
-	pthread_mutex_t			lst_meal;
+	pthread_mutex_t			last_meal;
 	pthread_mutex_t			meal;
 	pthread_t				thread;
-	t_table					*table;
+	t_info					*info;
 	t_times					*times;
 }				t_philo;
 
-typedef struct s_table
+typedef struct s_info
 {
 	int				status;
 	int				philo_dead;
 	int				nbr_philo;
 	t_times			*times;
 	t_philo			*philo;
-	pthread_mutex_t	print;
+	pthread_mutex_t	write;
 	pthread_mutex_t	status1;
-}				t_table;
+}				t_info;
 
-int						msg_error(char *str);
+int						print_error(char *str);
 long int				ft_atoi(const char *str);
 int						check_int(int ac, char **av);
 int						check_args(int ac, char **av);
 
 long long int			get_time_pass(unsigned long long start,
 							unsigned long long end);
-void					ms_sleep(unsigned long long milliseconde);
+void					ft_usleep(unsigned long long milliseconde);
 unsigned long long		get_actual_time(void);
 
-void					free_philo(t_table *table);
-void					destroy_mutex(t_table *table);
-void					destroy_thread(t_table *table);
+void					free_philo(t_info *info);
+void					destroy_mutex(t_info *info);
+void					destroy_thread(t_info *info);
 
-int						thread_start(t_table *table);
+int						thread_start(t_info *info);
 
 void					eat(t_philo *philo);
 void					sleep1(t_philo *philo);
 void					think(t_philo *philo);
 
-void					supervisor(t_table *table);
-int						death_checker(t_table *table);
-int						meal_checker(t_table *table);
+void					supervisor(t_info *info);
+int						check_death(t_info *info);
+int						check_meal(t_info *info);
 
 int						status_check(t_philo *philo);
 
