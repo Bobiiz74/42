@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: ktomat <ktomat@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/22 14:55:53 by vgroux            #+#    #+#              #
-#    Updated: 2023/06/14 10:50:25 by ktomat           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 SRC =	srcs/main.c \
 			srcs/routine.c \
 			srcs/error.c \
@@ -20,6 +9,7 @@ SRC =	srcs/main.c \
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -pthread
+
 NAME = philo
 
 OBJ = $(SRC:.c=.o)
