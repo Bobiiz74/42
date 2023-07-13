@@ -6,7 +6,7 @@
 /*   By: robin <robin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 13:20:07 by robin             #+#    #+#             */
-/*   Updated: 2023/07/05 14:20:50 by robin            ###   ########.fr       */
+/*   Updated: 2023/07/13 22:58:06 by rgodtsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	one_philo(t_info *info)
 {
-	printf("0 ms philo 1 has taken a fork\n");
+	printf("0 philo 1 has taken a fork\n");
 	ft_usleep(info->times->die_time);
 	return (0);
 }
